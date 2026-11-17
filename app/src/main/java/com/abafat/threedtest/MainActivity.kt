@@ -25,14 +25,12 @@ class MainActivity : ComponentActivity() {
                 val engine = rememberEngine()
                 val materialLoader = rememberMaterialLoader(engine)
 
-                // متریال مشکی
                 val blackMaterial = remember(materialLoader) {
                     materialLoader.createColorInstance(
                         Color(0xFF101010)
                     )
                 }
 
-                // متریال سبز نئونی
                 val greenMaterial = remember(materialLoader) {
                     materialLoader.createColorInstance(
                         Color(0xFF39FF88)
@@ -64,6 +62,22 @@ class MainActivity : ComponentActivity() {
                         radius = 0.22f,
                         position = Position(y = -0.475f),
                         materialInstance = blackMaterial
+                    )
+
+                    // نوار سبز بالایی
+                    CylinderNode(
+                        radius = 0.228f,
+                        height = 0.06f,
+                        position = Position(y = 0.38f),
+                        materialInstance = greenMaterial
+                    )
+
+                    // نوار سبز پایینی
+                    CylinderNode(
+                        radius = 0.228f,
+                        height = 0.06f,
+                        position = Position(y = -0.38f),
+                        materialInstance = greenMaterial
                     )
 
                     // محل اتصال کیسه
