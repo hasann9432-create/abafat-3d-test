@@ -6,8 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.remember
+
 import io.github.sceneview.SceneView
+import io.github.sceneview.rememberEngine
+import io.github.sceneview.rememberMaterialLoader
 import io.github.sceneview.math.Position
+import io.github.sceneview.material.colorOf
 
 class MainActivity : ComponentActivity() {
 
@@ -17,40 +23,62 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
 
+                val engine = rememberEngine()
+                val materialLoader = rememberMaterialLoader(engine)
+
+                val blackMaterial = remember(materialLoader) {
+                    materialLoader.createColorInstance(
+                        colorOf(Color(0xFF101010))
+                    )
+                }
+
+                val greenMaterial = remember(materialLoader) {
+                    materialLoader.createColorInstance(
+                        colorOf(Color(0xFF39FF88))
+                    )
+                }
+
                 SceneView(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
+                    engine = engine,
+                    materialLoader = materialLoader
                 ) {
 
                     // بدنه اصلی کیسه
                     CylinderNode(
                         radius = 0.22f,
-                        height = 0.95f
+                        height = 0.95f,
+                        materialInstance = blackMaterial
                     )
 
                     // قسمت گرد بالای کیسه
                     SphereNode(
                         radius = 0.22f,
-                        position = Position(y = 0.475f)
+                        position = Position(y = 0.475f),
+                        materialInstance = blackMaterial
                     )
 
                     // قسمت گرد پایین کیسه
                     SphereNode(
                         radius = 0.22f,
-                        position = Position(y = -0.475f)
+                        position = Position(y = -0.475f),
+                        materialInstance = blackMaterial
                     )
 
-                    // محل اتصال کیسه به زنجیر
+                    // محل اتصال کیسه
                     CylinderNode(
                         radius = 0.07f,
                         height = 0.20f,
-                        position = Position(y = 0.62f)
+                        position = Position(y = 0.62f),
+                        materialInstance = greenMaterial
                     )
 
                     // زنجیر بالای کیسه
                     CylinderNode(
                         radius = 0.025f,
                         height = 0.45f,
-                        position = Position(y = 0.95f)
+                        position = Position(y = 0.95f),
+                        materialInstance = greenMaterial
                     )
 
                 }
