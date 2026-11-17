@@ -13,7 +13,6 @@ import io.github.sceneview.SceneView
 import io.github.sceneview.rememberEngine
 import io.github.sceneview.rememberMaterialLoader
 import io.github.sceneview.math.Position
-import io.github.sceneview.material.colorOf
 
 class MainActivity : ComponentActivity() {
 
@@ -26,15 +25,17 @@ class MainActivity : ComponentActivity() {
                 val engine = rememberEngine()
                 val materialLoader = rememberMaterialLoader(engine)
 
+                // متریال مشکی
                 val blackMaterial = remember(materialLoader) {
                     materialLoader.createColorInstance(
-                        colorOf(Color(0xFF101010))
+                        Color(0xFF101010)
                     )
                 }
 
+                // متریال سبز نئونی
                 val greenMaterial = remember(materialLoader) {
                     materialLoader.createColorInstance(
-                        colorOf(Color(0xFF39FF88))
+                        Color(0xFF39FF88)
                     )
                 }
 
@@ -80,7 +81,6 @@ class MainActivity : ComponentActivity() {
                         position = Position(y = 0.95f),
                         materialInstance = greenMaterial
                     )
-
                 }
             }
         }
