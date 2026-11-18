@@ -13,7 +13,6 @@ import io.github.sceneview.SceneView
 import io.github.sceneview.rememberEngine
 import io.github.sceneview.rememberMaterialLoader
 import io.github.sceneview.math.Position
-import io.github.sceneview.math.Size
 
 class MainActivity : ComponentActivity() {
 
@@ -95,20 +94,6 @@ class MainActivity : ComponentActivity() {
                         height = 0.45f,
                         position = Position(y = 0.95f),
                         materialInstance = greenMaterial
-                    )
-
-                    // نشان شیر
-                    ImageNode(
-                        imageResId = R.drawable.lion_emblem,
-                        size = Size(
-                            x = 0.32f,
-                            y = 0.32f
-                        ),
-                        position = Position(
-                            x = 0f,
-                            y = 0f,
-                            z = 0.23f
-                        )
                     )
                 }
             }
